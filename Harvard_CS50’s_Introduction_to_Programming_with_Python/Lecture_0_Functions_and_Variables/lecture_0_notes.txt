@@ -1,0 +1,271 @@
+====================================
+Lecture 0 : Functions and Variables
+====================================
+
+Command to run python code :
+-----------------------------
+(on terminal)
+    python <filename>.py
+
+    eg. python code_01.py
+
+Functions :
+-----------
+- actions and verbs used to do something in program
+- eg.
+    print("hello, world")
+
+    here,
+        print is funtion(pre-defined function) which is used to print something on console.
+
+Arguments :
+-----------
+- content which we pass to a function
+- eg.
+    print("hello, world") --- print(argument)
+
+    here,
+        print is function used to print
+            which is passed in parenthesis ()
+        
+        in above example, 
+            we passed "hello, world" string in print function.
+            it prints "hello, world" on console.
+
+input :
+-------
+- input function(input())  is used to take input from user.
+- input take an argument which we can use to tell user that what is input about.
+- eg.
+    input("What's your name? ")
+    
+    (on terminal we can see)
+    What's your name? <blinking cursor waiting for input from user>
+
+Return Values :
+---------------
+- feature of functions
+- some functions will give us(returns us) some value as result
+- we need to keep or hold that return value in something that something is called as variables.
+
+Variables :
+-----------
+- storing a value in the memory of computer
+- variable are used to store value (number, string, etc)
+- variable is just a container for some value inside computer or inside of your own program
+- eg.
+    name = input("What's your name? ")
+
+    here, 
+        name is variable which is storing value which is returned by input function
+
+    Note :
+        = -> assignment operator
+             which assigns right hand's value in the left hand side's variable
+
+Comments :
+----------
+- notes to yourself in your code
+- typically hash symbol (#) is used in python for commenting
+- comment is ignored by python
+- used to serve pseudocode(outline of a program) for you
+- eg.
+    # ask user for their name -- comment
+    name = input("What's your name? ")
+
+Effective ways for printing properly :
+--------------------------------------
+- print("Hello," + name) -- concatenated name (variable) with "Hello," string it makes only 1 large argument for print function
+- print("Hello,", name ) -- passed "Hello," and name as two seperate arguments to print function
+
+
+str :
+-----
+- str is for String in python
+- it is sequence of characters
+
+print :
+-------
+- print(arguments)
+    print(*objects, sep=' ', end='\n')
+
+    *objects --> print function can take any number of arguments
+    sep (seperator) --> default value ' ' (single space) adds seperator which we passed between argument
+    end --> default value \n (new line)
+- eg.
+    print("Hello,",end=" ")
+    print(name)
+        output :
+            Hello, <value of name>
+
+Note :
+    variables listed in the function's definition --> parameters
+    actual values you pass into function when you call it --> arguments
+
+What if we want to print quote? :
+---------------------------------
+- need to use Escape character
+- need to use backslash (\)
+- eg.
+    print("hello, \"friend\"")
+        -- output :
+            hello, "friend"
+
+f string :
+----------
+- formatted string
+- eg.
+    print(f"Hello, {name}")
+    
+    here,
+        we use name variable value in string directly
+    
+String Methods :
+----------------
+- str is type of data
+- strip() : removes starting and ending spaces present in string
+    eg.
+        name = name.strip()
+- capatalize() : string's first letter get capatalized
+    eg.
+        name = "nikhil patil"
+        
+        name = name.capitalize()
+             --- name -> Nikhil patil
+- title() : capatalizing each word's first character of string
+    eg.
+        name = "nikhil patil"
+
+        name = name.title() 
+            --- name -> Nikhil Patil
+Note :
+    - we can combile all string function in one line at time of taking input
+        eg. name = input("What's your name? ").strip().title()
+
+- split() : splitting/ breaking strings words and returns splitted string as array of string
+    eg.
+        name = "Nikhil Patil"
+        first, last = name.split(" ") # " " contains on what basis we are splitting. 
+            
+        here,
+            first -> Nikhil
+            last -> Patil
+        
+int :
+-----
+- Integer datatype for negative or positive numbers without decimal points
+- +, -, *, /, % these symbols are used with int to perform arithmetic operations
+
+
+
+
+NOTE: 
+----- 
+    on terminal if we type :
+        python
+    and hit enter then python's interactive mode gets started
+
+    In this interactive mode, each line gets executed
+
+
+NOTE :
+------
+- input() returns taken input value in string format
+    So,
+        we need to convert that value into the required format
+
+    eg.
+        in calculator program :
+        
+        x = input("What's x? ") --- x is in str format
+        y = input("What's y? ") --- y is in str format
+
+        z = int(x) + int(y) # converting x and y into int before addition
+
+        print(z) --- we get z in int format
+
+    Note :
+        we can do like this also :
+            x = int(input("What's x? ")) --- taking input
+                                                converting into int (required type)
+                                                    and storing value in x (variable)
+                                                
+float :
+-------
+- number with decimal point
+
+round :
+-------
+- it rounds floating number to nearest int value number
+- round(number[, ndigits])
+    --- takes 
+            number -> number argument
+            ndigits -> (optional) if present then it rounds to that many decimal places
+- eg.
+    round(5.6) --- 6
+    round(5.4) --- 5
+
+    round(5.678, 2) --- 5.68
+    round(3.14159, 3) --- 3.141
+
+Note :
+    we can do round by using formatted string also.
+    round(z, 2) ---> print(f"{z:.2f}")
+
+Functions :
+-----------
+- we used some functions(input, print, round, int, float, etc) comes with python
+- we can define our own function to do some task
+- def keyword is used to create function (def means definition)
+- 
+    # defining function
+    def function_name(parameters):
+        # body of function
+    
+    function_name(arguments) # calling function
+
+    Note :
+        if function have parameters only then we need to pass arguments while calling.
+- eg.
+        # making our own function
+        def hello(to= "World"):
+            print("Hello,",to)
+
+
+        # calling hello function
+        hello() 
+            # here we get Hello, World in output. 
+            #   because we have not passed any arguments and hence
+            #       parameters default value is used
+
+            
+        # asking user for his name
+        name = input("What's your name? ")
+
+        # calling hello function
+        # passing argument to function while calling
+        hello(name)
+
+    Note :
+        - default value assignment is optional.
+        - function calling must be after function definition
+
+Scope :
+-------
+- variable existance is only for that/in that place where it is declared.
+
+return :
+--------
+- function can return some type of value
+- handing back some value - return value
+- return keyword used to return value explicitely 
+- eg.
+    def square(n):
+        return n * n
+    
+    print(square(5)) 
+        --- Output :
+                25
+
+
+=== END ===
