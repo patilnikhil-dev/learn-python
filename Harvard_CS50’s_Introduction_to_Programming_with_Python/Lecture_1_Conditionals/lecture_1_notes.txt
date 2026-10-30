@@ -1,0 +1,166 @@
+====================================
+Lecture 1 : Conditionals
+====================================
+
+- because of conditionals statements we get ability to ask questions
+- have ability to analyze the inputs 
+- we can ask questions by using some pre defined symbols
+    eg. >, >=, <, <=, == (to check equality), != (not equal to some value next to it)
+
+
+if :
+----
+- if the answer for this question is True?
+    if yes then do this
+- conditions which we use with if always returns True or False
+- eg.
+    if x > y:
+        print("x is greater than y")
+
+    Flow of above program :
+        if x value is less than y --- condition becomes True
+            exectues if block ie. we get x is greater than y on console
+        if x value is not less than y --- condition becomes False
+            we get nothing
+
+elif :
+------
+- it is used with if
+- Suppose, 
+    if's condition returns False
+        only then cursor goes to elif and check condition we given for elif , 
+            if elif condition is True then elif block exectues otherwise not
+- eg.
+    if x < y:
+        print("x is less than y")
+    elif x > y:
+        print("x is greater than y")
+    elif x == y:
+        print("x is equal to y") 
+
+- Note :
+    - if we use multiple if then python checks and verifies for each if condition
+    - if we use if with elif then python checks is if's condition is True then execute if block
+        if not then check which elif condition is True and execute that elif block
+            and after executing that elif block don't check other elif if present
+
+else :
+------
+- if all if's and elif's condition are False then we need to show/do something to user
+    sof for that we use else 
+- else means do this task if all if's and elif's(if present) conditions are False
+- eg.
+    if x < y:
+        print("x is less than y")
+    elif x > y:
+        print("x is greater than y")
+    else:
+        print("x is equal to y")
+
+or :
+----
+- (condition_1) or (condition_2)
+- or is a logical operator which returns False if both conditions are False else it returns True 
+- eg.    
+    # here we combined two condition by using "or" ---> False or False => False o.w. True 
+    if x < y or x > y:
+        print("x is not equal to y")
+    else:
+        print("x is equal to y")
+
+using == and != :
+-----------------
+- 
+    == --> checks are both operands are equal or not
+    != --> checks are both operands are not equal
+- eg.
+    # using not equal to
+    if x != y:
+        print("x is not equal to y")
+    else:
+        print("x is equal to y")
+
+
+    # using equal to 
+    if x == y:
+        print("x is equal to y")
+    else:
+        print("x is not equal to y")
+
+and :
+-----
+- (condition_1) and (condition_2)
+- it is logical operator
+- it returns True if both conditions are True else it returns False
+- eg. (used chaining of comparision operators)
+    score = int(input("Score: "))
+    
+    if 90 <= score <= 100:
+        print("Grade A")
+    elif 80 <= score < 90:
+        print("Grade B")
+    elif 70 <= score < 80:
+        print("Grade C")
+    elif 60 <= score < 70:
+        print("Grade D")
+    else:
+        print("Grade F")
+
+modulo (%) :
+------------
+- usecase : checking given number is even or not
+    even number is number divisible by 2 that means remainder should come 0
+- modulo (%) returns remainder
+- eg.
+    # checking x is even or odd
+    if x % 2 == 0:
+        print("x is even number")
+    else:
+        print("x is odd number")
+
+bool :
+------
+- datatype of value
+- bool can only be True or False
+- eg. 
+    is_true = True
+    is_false = False
+
+Pythonic way to check number is even or not :
+---------------------------------------------
+-
+    way 1 :
+    -------
+    # function to check number is even or not
+    def is_even(n):
+        return True if n % 2 == 0 else False
+
+    way 2 :
+    -------
+    our condition returns True or False so there is no need to check it using if
+
+    def is_even(n):
+        return ( n % 2 == 0)
+
+match :
+-------
+- similar to switch in other languages
+- eg.
+    name = input("What's your name? ")
+
+    match name:
+        case "Harry" | "Herminone" | "Ron":
+            print("Gryffindor")
+        case "Draco":
+            print("Slytherin")
+        case _:
+            print("Who?")
+
+    here ,
+        - case "Harry" | "Herminone" | "Ron"
+            we are checking multiple values for same output
+        - case _
+            it is default condition, if other cases not matched then this case gets executed.
+
+
+=== END ===
