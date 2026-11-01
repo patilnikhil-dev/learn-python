@@ -1,0 +1,127 @@
+====================================
+Lecture 3 : Exceptions
+====================================
+
+- refer to problems in your code
+- something gone wrong
+- we need to write code which handles errors
+
+SyntaxError :
+-------------
+- occur due to inappropriate syntax
+- syntax error need to fix
+- eg.
+    print("Hello, World) --> here, " is missing
+
+RuntimeError :
+--------------
+- happens at time or running program
+- can be occur because of invalid data type value, etc
+
+try and except :
+----------------
+- try 
+    - the code which can generate error
+- except 
+    - what to do if error occured
+- eg.
+    try:
+        x = int(input("What's x? "))
+        print(f"x is: {x}")
+    except ValueError:
+        print("x is not an integer")
+
+    
+    Note :
+        above code will work for int type value 
+        what if user entered string value, program gets terminated automatically with error
+            ValueError: invalid literal for int() with base 10
+        in above code we are handling ValueError
+
+        - In our program we are handling a specific type of error
+
+NOTE :
+------ 
+- for best practice,
+    always find which type of error going to throw try block
+        and for that error handle the exception using specific except block
+    
+- 1 error = 1 except block
+
+else :
+------
+- try -- what can goes wrong
+  except -- what to do if something goes wrong
+  else -- what to do if nothing goes wrong
+- eg.
+    try:
+        x = int(input("What's x? "))
+    except ValueError:
+        print("x is not an integer")
+    else:
+        print(f"x is: {x}")
+
+break with try except and else :
+--------------------------------
+- eg.
+    while True:
+        try:
+            x = int(input("What's x? "))
+        except ValueError:
+            print("x is not an integer")
+        else:
+            break
+        
+    print(f"x is: {x}") # because of loop we can use x from try(or loop) outside of loop
+    
+using return with function containing loop containing try-except :
+-----------------------------------------------------------------------
+- eg.
+    def get_int():
+        while True:
+            try:
+                return int(input("What's x? ")) # if error(datatype other than int) goes to except, if no error returns inputted int type value
+            except ValueError:
+                print("x is not an integer")
+
+    # main function - entry point function
+    def main():
+        result = get_int()
+
+        print(f"result is: {result}")
+
+    # call to main
+    main()
+- return have more power than break
+    return breaks the loop and returns the value from the function
+
+pass :
+------
+- you want to catch error 
+    but you don't to do anything(don't want to print, don't want to process the error)
+- eg.
+    def get_int():
+        while True:
+            try:
+                x = int(input("What's x? "))
+            except ValueError:
+                pass # if error, don't do anything
+            else:
+                return x
+            
+
+    # main function - entry point function
+    def main():
+        result = get_int()
+
+        print(f"result is: {result}")
+
+    # call to main
+    main()
+
+raise :
+-------
+- used to raise own exception (we will see another time)
+
+
+=== END ===

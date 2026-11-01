@@ -1,5 +1,5 @@
 ====================================
-Lecture 1 : Loops
+Lecture 2 : Loops
 ====================================
 
 - to do something again and again - use Loops
@@ -203,3 +203,5 @@ Nested Loops :
         ###
         ###
         ###
+
+=== END ===
