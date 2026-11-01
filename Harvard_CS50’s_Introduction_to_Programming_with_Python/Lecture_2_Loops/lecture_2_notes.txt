@@ -1,0 +1,205 @@
+====================================
+Lecture 1 : Loops
+====================================
+
+- to do something again and again - use Loops
+
+while :
+-------
+- type of loop
+- eg.
+    # printing Meow three times using while loop
+    i = 3 # how many times need to do task
+
+    # condition
+    while i != 0:
+        print("Meow") # task we want to perform
+
+        i-=1 # updating i value to repeat task
+ 
+NOTE :
+    python don't have
+        ++, -- operators
+
+for :
+-----
+- type of loop
+- used to iterate over list
+- used when you know - how many times you want to iterate
+- eg.
+    for i in [0, 1, 2]:
+        print("Meow")
+
+    print("----------")
+
+    # better way do to above code
+    for i in range(3):
+        print("Meow")
+
+    NOTE :
+        - range(end) 
+            - is function which provides range till the mentioned end number
+            - end number is not included
+        - if we don't care about variable which will used inside for then we can use underscore( _ ) instead of variable name
+            eg.
+                for _ in range(3):
+                    print("Meow") 
+
+            Don't use _ if you are using variable in the for loop block
+
+continue and break keywords :
+-----------------------------
+- eg.
+    # this code will repeate till user don't enter positive value    
+    while True:
+        n = int(input("What's n? "))
+
+        if n < 0:
+            continue # if value negative then run loop again
+        else: 
+            break # if value positive breaks the loop and go outside of loop
+
+
+list :
+------
+- type of data type -> []
+- way of containing multiple values at a place
+- we can access list elements by using index of element. Index always starts from 0 (zero)
+- eg.
+    # list of students
+    students = ["Hermione", "Harry", "Ron"] # list of  strings
+
+    print(students) # printing list
+
+    print(students[0]) # printing first element - 0th index element of list
+    print(students[1]) # printing second element - 1st index element of list
+    print(students[2]) # printing third element - 2nd element of list
+
+    print()
+
+    # we can use for loop to iterate through list
+    for student in students:
+        print(student, end=" ")
+
+len :
+-----
+- it gives length of list
+- students = ["Hermione", "Harry", "Ron"] ---> len(students) --> 3
+- eg.
+    # using length
+    print(f"Length of students list : {len(students)}")
+
+    # iterating using length
+    # for i in range(3)
+    for i in range(len(students)):
+        print(students[i]) # printing current ith element of students
+    
+dict :
+------
+- dictionary is datastructure which is used to associate one value to other
+- set of key-value pair. something associate with something
+- {} is used for dict
+- we can access dict element by using key of dict
+- eg.
+     # dictionary of students
+    students = {
+        "Herminoe" : "Gryffindor",
+        "Harry" : "Gryffindor",
+        "Ron" : "Gryffindor",
+        "Draco" : "Slytherin"
+    }
+
+    # printing dict of students
+    print(students)
+
+    # printing using key
+    print(f"Data present at key Don : {students["Ron"]}")
+- printing keys of dict :
+    # iterating dict by using for loop
+    for student in students:
+        print(student) # prints current key
+- printing values of dict :
+    # iterating dict by using for loop
+    for student in students:
+        print(student, students[student], sep=" - ") # prints current key with it's associated value
+
+List of dictionaries :
+----------------------
+- we can make/create list of dictionaries
+- eg.
+    # list of dictiories
+    students = [
+        {
+            "name": "Harmione",
+            "house": "Gryffindor",
+            "patronus": "Otter"
+        },
+        {
+            "name": "Harry",
+            "house": "Gryffindor",
+            "patronus": "Stag"
+        },
+        {
+            "name": "Ron",
+            "house": "Gryffindor",
+            "patronus": "Jack Russell Terrier"
+        },
+        {
+            "name": "Draco",
+            "house": "Slytherin",
+            "patronus": None # No value for patronus
+        }
+    ]
+
+    # iterating students
+    for student in students:
+        print(student) # prints current indexth student dict
+
+    NOTE :
+        we can access dictionary elements by using keys 
+
+None :
+------
+- data type or special keyword
+- this represents absence of value
+
+Nested Loops :
+--------------
+- one loop inside another loop
+- eg.
+    # function to print square with provided size
+    def print_square(size):
+    
+        for row in range(size):
+            # for current row
+
+            for col in range(size):
+                # for current column
+                print("#", end="") # print # 
+
+            # after completing col loop, go on next line
+            print() # for going to next line 
+
+    # entry point function
+    def main():
+        # call to print_square
+        print_square(3)
+
+    # call to main
+    main() 
+
+    Output --> (3x3 square)
+        ###
+        ###
+        ###
+    
+- Smart approach for above code (if we don't want to use nested loop)
+    # smart approach for print_square to print square
+    def smart_print_square(size):
+        for i in range(size):
+            print("#" * size)
+
+    Output --> 
+        ###
+        ###
+        ###
