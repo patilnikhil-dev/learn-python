@@ -1,0 +1,133 @@
+====================================
+Lecture 5 : Unit Tests
+====================================
+
+- Testing your own code by using your own code
+- make good habbit of testing multiple cases for a code
+
+Testing manually :
+------------------
+- eg.
+    code_1_calculator.py
+    --------------------
+    # function to calculate square of number
+    def square(n):
+        return n * n
+
+    # entry point of function
+    def main():
+        x =  int(input("What's x? "))
+
+        print("x squared is", square(x))    
+
+    if __name__ == "__main__":
+        main()
+
+    code_1_test_calculator.py (run this file and check is there any error or not)
+    -----------------------------------------------------------------------------
+    from code_1_calculator import square
+
+    def test_square():
+        if square(2) != 4:
+            print("2 squared was not 4")
+
+        if square(3) != 9:
+            print("3 squared was not 9")
+
+
+    def main():
+        test_square()
+
+
+    if __name__ == "__main__":
+        main()
+
+
+assert :
+--------
+- assert something is true. if no then nothing
+- eg. above test class becomes :
+    
+    from code_1_calculator import square
+
+    def test_square():
+        try:
+            assert square(2) == 4
+            assert square(3) == 9
+        except AssertionError:
+            print("test case failed")
+
+    def main():
+        test_square()
+
+
+    if __name__ == "__main__":
+        main()
+
+- if assertion failed then an only then AssertionError hits
+
+
+pytest :
+--------
+- tool to test code
+- third party program you need to download which automates the testing
+    pip install pytest
+- pytest is used for unit testing. Unit testing --> testing a smallest unit (function)
+- after installing pytest,
+    eg.
+    code_3_test_calculator_pytest.py
+    --------------------------------
+    from code_1_calculator import square
+
+    def test_square():
+        assert square(2) == 4
+        assert square(3) == 3 # kept intentionally to generate error
+        assert square(-2) == 4
+        assert square(-3) == 9
+        assert square(0) == 0
+
+    (on cmd)
+        python -m pytest .\code_3_test_calculator_pytest.py 
+    ============================== test session starts ==============================
+    platform win32 -- Python 3.14.7, pytest-9.2.0, pluggy-1.7.0
+    rootdir: D:\Nikhil\learn\python\00_github_uploads\learn-python\Harvard_CS50’s_Introduction_to_Programming_with_Python\Lecture_5_UnitTests
+    collected 1 item                                                                 
+
+    code_3_test_calculator_pytest.py F                                         [100%]
+
+    =================================== FAILURES ====================================
+    __________________________________ test_square __________________________________
+
+        def test_square():
+            assert square(2) == 4
+    >       assert square(3) == 3
+    E       assert 9 == 3
+    E        +  where 9 = square(3)
+
+    code_3_test_calculator_pytest.py:5: AssertionError
+    ============================ short test summary info ============================
+    FAILED code_3_test_calculator_pytest.py::test_square - assert 9 == 3
+    =============================== 1 failed in 0.12s ===============================
+
+NOTE :
+------
+- if we are using pytest
+    AssertionError is automatically handle by pytest
+        there is no need to handle AssertionError
+
+NOTE :
+------
+    We can test only those function which are returning values.
+
+    So, for that always make your code testable. (functions returning value)
+
+Organizing test in a folder of tests/ package :
+-----------------------------------------------
+- suppose we created a test folder contating test file
+    and now we want to run test files present in test folder
+        we can use
+             python -m pytest test
+            this command to run all the test files from that folder
+
+
+=== END ===
