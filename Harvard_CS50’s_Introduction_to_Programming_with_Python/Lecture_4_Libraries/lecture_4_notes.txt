@@ -1,0 +1,265 @@
+====================================
+Lecture 4 : Libraries
+====================================
+
+- files of code writted by other people which we can use in our code
+
+Modules :
+---------
+- library which contains one or more functions or built in to it
+- if there is a function which we are using in multiple programs then instead of copying
+the same code in each program, put that code in library and use that library in your program
+
+
+random :
+--------
+- python library contains one or more function
+- used to pick random number in between 1 and 10
+- random.choice(seq) --- seq -> list like input
+- eg. (run this program again and again if you want to check random usage)
+    import random
+
+    coin_face = random.choice(["heads", "tails"]) # randomly choosing between heads and tails
+
+    print(coin_face)
+
+loading a module :
+------------------
+- to use module in our program, we need to import module in our program
+
+from :
+------
+- import random
+    --> importing whole random module in our program(we have access to all functions present in random module)
+- from random import choice
+    --> loads choice function into our program scope(now we have access to only choice function from random module)
+- eg.
+    from random import choice
+
+    coin_face = choice(["heads", "tails"]) # randomly choosing between heads and tails
+
+random.randint(a, b) :
+----------------------
+- getting random number in between a and b (both are inclusive values)
+- eg.
+    number = random.randint(10, 20)
+
+random.shuffle(x) :
+-------------------
+- takes list as input and shuffles the values in input
+- modifies original list
+- eg.
+    import random
+
+    cards = ["jack", "queen", "king"]
+    print(f"original cards : {cards}")
+
+    random.shuffle(cards)
+    print(f"shuffled cards : {cards}")
+
+statistics :
+------------
+- library present in python
+
+statistics.mean(x) :
+--------------------
+- calculated mean of list of values we pass to it
+- eg.
+    import statistics
+
+    print(statistics.mean([100, 90]))
+
+command-line arguments :
+------------------------
+- allow you to give input with the command you use to run the python program(python hello.py ...)
+- need to import sys module to take input command-line arguments
+- sys.argv takes input as list
+    - first element - first argument
+    - second element - second argument
+    - and so on
+- sys.argv's 0th element is program file name
+- eg.
+    code_6.py
+    ---------
+    import sys
+
+    print("file name:",sys.argv[0]) ---> gives program file name
+    print("hello, my name is",sys.argv[1])
+
+    on cmd
+    ------
+    python code_6.py Nikhil
+
+    output
+    ------
+    file name: code_6.py
+    hello, my name is Nikhil
+
+sys.exit :
+----------
+- use to exit program when we want
+- lines after sys.exit() does not get executed
+- eg.
+    import sys
+
+    # check for errors
+    if len(sys.argv) < 2:
+        sys.exit("missing argument")
+    elif len(sys.argv) > 2:
+        sys.exit("too many arguments")
+
+    # print name tag
+    print("hello, my name is",sys.argv[1])
+
+slices :
+--------
+- taking slice of list --> taking sublist of list
+- eg.
+    code_8.py
+    ---------
+    import sys
+
+    if len(sys.argv) < 2:
+        sys.exit("too few arguments")
+
+    # we want to get list containing elements starting from 1 to end because sys.argv[0] is code_8.py
+    for arg in sys.argv[1:]:
+        print("hello, my name is",arg)
+
+    on cmd
+    ------
+    python code_8.py nikhil rahul akshay
+
+    output
+    ------
+    hello, my name is nikhil
+    hello, my name is rahul
+    hello, my name is akshay
+
+- negative indexing means starting from last element of list
+    1       2       3
+    nikhil rahul akshay
+    -3      -2      -1
+
+packages :
+----------
+- modules/ libraries comes with python called as packages
+- package is generally third party library which we install in our system
+
+PyPI :
+------
+- python package index
+- location where all packages are present. you can download and install from here.
+
+cowsay :
+--------
+- third party libary/package
+- It generates images of a cow (or other characters) "saying" a user-defined message inside a speech bubble.
+- installing cowsay in our system :
+  ----------------------------------
+    (on cmd)
+    python install cowsay
+- after installing cowsay libary/package, we can import and use this library in our program
+- eg.
+    import cowsay
+
+    name = input("Enter your name: ")
+
+    cowsay.cow("hello, "+ name)
+
+    output :
+    --------
+    Enter your name: Nikhil
+     _____________
+    | hello, Nikhil |
+     =============
+                \
+                 \
+                    ^__^
+                    (oo)\_______
+                    (__)\       )\/\
+                        ||----w |
+                        ||     ||
+
+APIs (Application Programming Interfaces) :
+-------------------------------------------
+- requests :
+  ----------
+    - library which allows you to make requests with browsers
+    - installing requests in your system :
+        pip install requests
+    - eg.
+        import requests
+
+        # url which returns a JSON data - IMPORTANT
+        url = "https://itunes.apple.com/search?entity=song&limit=5&term=weezer"
+        response = requests.get(url)
+
+        # printing response informat of JSON
+        print(response.json())
+
+json library to format data properly :
+--------------------------------------
+- need to import json in our program
+- eg.
+    import requests
+    import json
+
+    # url which returns a JSON data
+    url = "https://itunes.apple.com/search?entity=song&limit=5&term=weezer"
+    response = requests.get(url)
+
+    # printing response informat of JSON
+    print(json.dumps(response.json(), indent = 2)) # it makes a more readable json format
+
+JSON :
+------
+- Javascript Object Notation
+- used as format for transfering data
+
+making your own library :
+-------------------------
+- eg.
+    saying_module.py
+    ----------------
+    def main():
+        hello("world")
+        goodbye("world")
+
+    def hello(name):
+        print(f"hello, {name}")
+
+    def goodbye(name):
+        print(f"goodbye, {name}")
+
+    if __name__ == "__main__": 
+        main()
+
+    use_saying.py
+    -------------
+    import sys
+    from saying_module import hello
+
+    if len(sys.argv) == 2:
+        hello(sys.argv[1])
+
+    (on cmd)
+    --------   
+    python use_saying.py nikhil
+
+    hello, nikhil
+
+NOTE :
+    __name__ --> gives file module name
+
+    Python automatically assigns a value to __name__ :
+        - If a file runs directly → __name__ = "__main__"
+        - If a file is imported → __name__ gets the module's name.
+
+    So in above program,
+        we run use_saying.py and in that file we imported saying_module.py
+            and because of that, value of __name__ in saying_module.py is not main (because we have not run saying_module file directly, it is imported)
+            due to that if __name__ == "__main__" becomes false and main() not called.
+
+
+=== END ===
